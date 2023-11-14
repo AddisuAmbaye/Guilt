@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import asyncHandler from "express-async-handler"
+import generateToken from "../utils/generateToken.js";
+
 //user registeration 
 export const userRegisterCtrl = asyncHandler(
     async (req, res) => {
@@ -15,7 +17,7 @@ export const userRegisterCtrl = asyncHandler(
         const newUser = await User.create({
             fullname,
             email,
-            password: hashedPassword
+            password: hashedPassword,
         });
         return res.status(201).json({
             status: "success",
@@ -30,7 +32,15 @@ export const userLoginCtrl = asyncHandler(
         const { email,password } = req.body;
         const userFound = await User.findOne({email});
         if(userFound && await bcrypt.compare(password, userFound?.password)){
-            return res.json(userFound);
+            return res.json({
+                status: "success",
+                data: {
+                  fullname: userFound.fullname,
+                  email: userFound.email,
+                  isAdmin: userFound.isAdmin,
+                  token: generateToken(userFound.id),
+                },
+              });
         }
        else{
          throw new Error("Invalid login credentials")

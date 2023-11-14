@@ -8,3 +8,10 @@ export const globalErrorHandler = (err,req,res,next) => {
         message
     })
 }
+//not found error
+export const notFound = (req, res, next) => {
+    const err = new Error(`Can't find ${req.originalUrl} on this server`);
+    err.status = "failed";
+    err.statusCode = 404;
+    next(err);
+  };
