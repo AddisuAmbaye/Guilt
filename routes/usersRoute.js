@@ -1,9 +1,16 @@
-import express from 'express';
-import { userRegisterCtrl,userLoginCtrl } from '../controllers/usersCtrl.js';
+import exppress from "express";
+import {
+  registerUserCtrl,
+  loginUserCtrl,
+  getUserProfileCtrl,
+  updateShippingAddresctrl,
+} from "../controllers/usersCtrl.js";
+import { isLoggedIn } from "../middlewares/isLoggedIn.js";
 
-const userRouter = express.Router();
+const userRouter = exppress.Router();
 
-userRouter.post('/register', userRegisterCtrl);
-userRouter.post('/login', userLoginCtrl);
-
-export default userRouter;  
+userRouter.post("/register", registerUserCtrl);
+userRouter.post("/login", loginUserCtrl);
+userRouter.get("/profile", isLoggedIn, getUserProfileCtrl);
+userRouter.put("/update/shipping", isLoggedIn, updateShippingAddresctrl);
+export default userRouter;
