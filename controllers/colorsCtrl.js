@@ -15,7 +15,7 @@ export const createColorCtrl = asyncHandler(async (req, res) => {
   //create
   const color = await Color.create({
     name: name.toLowerCase(),
-    user: req.userAuthId,
+    user: req.userAuth,
   });
 
   res.json({
