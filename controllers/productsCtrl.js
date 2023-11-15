@@ -70,10 +70,42 @@ export const getProductsCtrl = asyncHandler(
         price: { $gte: priceRange[0], $lte: priceRange[1] },
         });
     }
+     //pagination
+    //page
+    const page = parseInt(req.query.page) ? parseInt(req.query.page) : 1;
+    //limit
+    const limit = parseInt(req.query.limit) ? parseInt(req.query.limit) : 10;
+    //startIdx
+    const startIndex = (page - 1) * limit;
+    //endIdx
+    const endIndex = page * limit;
+    //total
+    const total = await Product.countDocuments();
+
+    productQuery = productQuery.skip(startIndex).limit(limit);
+
+    //pagination results
+    const pagination = {};
+    if (endIndex < total) {
+        pagination.next = {
+        page: page + 1,
+        limit,
+        };
+    }
+    if (startIndex > 0) {
+        pagination.prev = {
+        page: page - 1,
+        limit,
+        };
+    }
      //await query
      const products = await productQuery;
      res.json({
-        message: "Sucesses",
-        products
+        status: "success",
+        total,
+        results: products.length,
+        pagination,
+        message: "Products fetched successfully",
+        products,
       });
 });
