@@ -6,6 +6,7 @@ import Brand from "../model/Brand.js";
 export const createProductCtrl = asyncHandler(
     async(req, res) => {
         const { name,description,brand,category,sizes,colors,user,price,totalQty } = req.body;
+        const convertedImgs = req.files.map((file) => file?.path);
         const productExists = await Product.findOne({ name });
         if(productExists){
             throw new Error("Product Already Exists");
@@ -29,7 +30,8 @@ export const createProductCtrl = asyncHandler(
         colors,
         user: req.userAuth,
         price,
-        totalQty
+        totalQty,
+        images: convertedImgs
     });
     brandFound.products.push(product._id);
     await brandFound.save();
