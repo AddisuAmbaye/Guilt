@@ -1,9 +1,8 @@
-import User from "../model/User.js";
+import User from "../models/User.js";
 import asyncHandler from "express-async-handler";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import generateToken from "../utils/generateToken.js";
-import { getTokenFromHeader } from "../utils/getTokenFromHeader.js";
-import { verifyToken } from "../utils/verifyToken.js";
+
 
 // @desc    Register user
 // @route   POST /api/v1/users/register
@@ -71,7 +70,7 @@ export const getUserProfileCtrl = asyncHandler(async (req, res) => {
 // @route   PUT /api/v1/users/update/shipping
 // @access  Private
 
-export const updateShippingAddresctrl = asyncHandler(async (req, res) => {
+export const updateShippingAddresCtrl = asyncHandler(async (req, res) => {
   const {
     firstName,
     lastName,

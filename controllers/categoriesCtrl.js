@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Category from "../model/Category.js";
+import Category from "../models/Category.js";
 // @desc    Create new category
 // @route   POST /api/v1/categories
 // @access  Private/Admin

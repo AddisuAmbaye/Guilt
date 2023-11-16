@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Brand from "../model/Brand.js";
+import Brand from "../models/Brand.js";
 
 // @desc    Create new Brand
 // @route   POST /api/v1/brands

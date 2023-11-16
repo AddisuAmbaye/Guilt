@@ -2,10 +2,10 @@ import asyncHandler from "express-async-handler";
 import dotenv from "dotenv";
 dotenv.config();
 import Stripe from "stripe";
-import Order from "../model/Order.js";
-import Product from "../model/Product.js";
-import User from "../model/User.js";
-import Coupon from "../model/Coupon.js";
+import Order from "../models/Order.js";
+import Product from "../models/Product.js";
+import User from "../models/Brand.js";
+import Coupon from "../models/Coupon.js";
 //@desc create orders
 //@route POST /api/v1/orders
 //@access private

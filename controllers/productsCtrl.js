@@ -1,7 +1,7 @@
 import Product from "../models/Product.js";
 import asyncHandler from "express-async-handler"
-import Category from "../model/Category.js";
-import Brand from "../model/Brand.js";
+import Category from "../models/Category.js";
+import Brand from "../models/Brand.js";
 
 export const createProductCtrl = asyncHandler(
     async(req, res) => {

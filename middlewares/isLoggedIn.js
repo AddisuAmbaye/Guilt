@@ -1,7 +1,7 @@
 import getTokenFromHeader from "../utils/getTokenFromHeader.js";
 import  verifyToken from "../utils/verifyToken.js";
 
- const isLoggedIn = (req, res, next) => {
+export const isLoggedIn = (req, res, next) => {
     //get token from header
     const token = getTokenFromHeader(req);
     //verify the token
@@ -15,4 +15,4 @@ import  verifyToken from "../utils/verifyToken.js";
     }
   };
   
-  export default isLoggedIn; 
+export default isLoggedIn; 

@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Coupon from "../model/Coupon.js";
+import Coupon from "../models/Coupon.js";
 // @desc    Create new Coupon
 // @route   POST /api/v1/coupons
 // @access  Private/Admin

@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../config/fileUpload.js";
 import { 
     createProductCtrl,
     getProductsCtrl,
@@ -7,6 +8,7 @@ import {
     deleteProductCtrl
  } from "../controllers/productsCtrl.js";
 import isLoggedIn from "../middlewares/isLoggedIn.js";
+import isAdmin from "../middlewares/isAdmin.js";
 const productsRouter = express.Router();
 
 productsRouter.post(
