@@ -7,7 +7,7 @@ import Review from "../model/Review.js";
 // @access  Private/Admin
 
 export const createReviewCtrl = asyncHandler(async (req, res) => {
-  const { product, message, rating } = req.body;
+  const { product,message, rating } = req.body;
   //1. Find the product
   const { productID } = req.params;
   const productFound = await Product.findById(productID).populate("reviews");
@@ -26,7 +26,7 @@ export const createReviewCtrl = asyncHandler(async (req, res) => {
     message,
     rating,
     product: productFound?._id,
-    user: req.userAuthId,
+    user: req.userAuth,
   });
   //Push review into product Found
   productFound.reviews.push(review?._id);

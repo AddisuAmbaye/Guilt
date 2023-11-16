@@ -59,7 +59,7 @@ export const loginUserCtrl = asyncHandler(async (req, res) => {
 // @access  Private
 export const getUserProfileCtrl = asyncHandler(async (req, res) => {
   //find the user
-  const user = await User.findById(req.userAuthId).populate("orders");
+  const user = await User.findById(req.userAuth).populate("orders");
   res.json({
     status: "success",
     message: "User profile fetched successfully",
@@ -83,7 +83,7 @@ export const updateShippingAddresctrl = asyncHandler(async (req, res) => {
     country,
   } = req.body;
   const user = await User.findByIdAndUpdate(
-    req.userAuthId,
+    req.userAuth,
     {
       shippingAddress: {
         firstName,
